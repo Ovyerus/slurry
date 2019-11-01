@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Slurry.Controls.Restore"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Slurry"
+             mc:Ignorable="d" 
+             d:DesignHeight="230" d:DesignWidth="270">
+    <Grid Background="#FFE5E5E5">
+        <Grid Margin="10,10,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TextBlock x:Name="restoreSteamDirectoryHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Restore Steam To..."/>
+            <TextBox x:Name="restoreSteamDirectory" Margin="0,21,26,0" Text="C:\Program Files (x86)\Steam" VerticalAlignment="Top"/>
+            <CheckBox x:Name="restoreSteamapps" Content="Restore steamapps (if possible)?" HorizontalAlignment="Left" Margin="0,44,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="findRestoreSteamDirectory" Content="..." Margin="0,21,0,0" VerticalAlignment="Top" Height="18" HorizontalAlignment="Right" Width="21"/>
+        </Grid>
+
+        <Grid Margin="10,80,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TextBlock x:Name="restoreHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Restore From..."/>
+            <TextBox x:Name="restoreLocation" Margin="0,21,26,0" Text="E:\SteamBackup.zip" VerticalAlignment="Top"/>
+            <Button x:Name="findRestoreLocation" Content="..." HorizontalAlignment="Right" Margin="0,21,0,0" VerticalAlignment="Top" Width="21" Height="18"/>
+        </Grid>
+        <Button x:Name="restore" Content="Restore" Margin="10,0,10,10" VerticalAlignment="Bottom"/>
+    </Grid>
+</UserControl>

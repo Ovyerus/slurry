@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Slurry.Controls.Backup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Slurry"
+             mc:Ignorable="d" 
+             d:DesignHeight="230" d:DesignWidth="270">
+    <Grid Background="#FFE5E5E5">
+        <Grid Margin="10,10,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TextBlock x:Name="steamDirectoryHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Backup Steam From..."/>
+            <TextBox x:Name="steamDirectory" Margin="0,21,26,0" Text="C:\Program Files (x86)\Steam" VerticalAlignment="Top"/>
+            <CheckBox x:Name="backupSteamapps" Content="Backup steamapps?" HorizontalAlignment="Left" Margin="0,44,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="findSteamDirectory" Content="..." HorizontalAlignment="Right" Margin="0,21,0,0" VerticalAlignment="Top" Width="21" Height="18"/>
+        </Grid>
+
+        <Grid Margin="10,80,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TextBlock x:Name="backupHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Backup To..."/>
+            <TextBox x:Name="backupLocation" Margin="0,21,26,0" Text="E:\SteamBackup.zip" VerticalAlignment="Top"/>
+            <Button x:Name="findBackupLocation" Content="..." HorizontalAlignment="Right" Margin="0,21,0,0" VerticalAlignment="Top" Width="21" Height="18"/>
+        </Grid>
+
+        <Button x:Name="backup" Content="Backup" Margin="10,0,10,10" VerticalAlignment="Bottom"/>
+    </Grid>
+</UserControl>

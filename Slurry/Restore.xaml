@@ -8,17 +8,47 @@
              d:DesignHeight="230" d:DesignWidth="270">
     <Grid Background="#FFE5E5E5">
         <Grid Margin="10,10,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <TextBlock x:Name="restoreSteamDirectoryHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Restore Steam To..."/>
-            <TextBox x:Name="restoreSteamDirectory" Margin="0,21,26,0" Text="C:\Program Files (x86)\Steam" VerticalAlignment="Top"/>
-            <CheckBox x:Name="restoreSteamapps" Content="Restore steamapps (if possible)?" HorizontalAlignment="Left" Margin="0,44,0,0" VerticalAlignment="Top"/>
-            <Button x:Name="findRestoreSteamDirectory" Content="..." Margin="0,21,0,0" VerticalAlignment="Top" Height="18" HorizontalAlignment="Right" Width="21"/>
+            <TextBlock x:Name="restoreHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Restore From..."/>
+            <TextBox x:Name="RestoreLocation" Margin="0,21,26,0" Text="" VerticalAlignment="Top"/>
+            <Button x:Name="FindRestoreLocation" Content="..." HorizontalAlignment="Right" Margin="0,21,0,0" VerticalAlignment="Top" Width="21" Height="18" Click="FindRestoreLocation_Click"/>
         </Grid>
 
-        <Grid Margin="10,80,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <TextBlock x:Name="restoreHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Restore From..."/>
-            <TextBox x:Name="restoreLocation" Margin="0,21,26,0" Text="E:\SteamBackup.zip" VerticalAlignment="Top"/>
-            <Button x:Name="findRestoreLocation" Content="..." HorizontalAlignment="Right" Margin="0,21,0,0" VerticalAlignment="Top" Width="21" Height="18"/>
+        <Grid Margin="10,59,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TextBlock x:Name="restoreSteamDirectoryHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Restore Steam To..."/>
+            <TextBox x:Name="SteamDirectory" Margin="0,21,26,0" Text="C:\Program Files (x86)\Steam" VerticalAlignment="Top" IsEnabled="{Binding Text.Length, ElementName=RestoreLocation}"/>
+            <!-- Disable if no steamapps in restore zip -->
+            <CheckBox
+                x:Name="RestoreSteamapps"
+                Content="Restore steamapps?"
+                HorizontalAlignment="Left" Margin="0,44,0,0"
+                VerticalAlignment="Top"
+                Checked="RestoreSteamapps_Confirm"
+                IsEnabled="{Binding Text.Length, ElementName=RestoreLocation}"/>
+            <Button
+                x:Name="FindSteamDirectory"
+                Content="..."
+                Margin="0,21,0,0"
+                VerticalAlignment="Top"
+                Height="18"
+                HorizontalAlignment="Right"
+                Width="21"
+                Click="FindSteamDirectory_Click"
+                IsEnabled="{Binding Text.Length, ElementName=RestoreLocation}"/>
         </Grid>
-        <Button x:Name="restore" Content="Restore" Margin="10,0,10,10" VerticalAlignment="Bottom"/>
+
+        <Button x:Name="RestoreBtn" Content="Restore" Margin="10,0,10,10" VerticalAlignment="Bottom" Click="PerformRestore">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=RestoreLocation, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=SteamDirectory, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>

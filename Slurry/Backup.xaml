@@ -8,18 +8,31 @@
              d:DesignHeight="230" d:DesignWidth="270">
     <Grid Background="#FFE5E5E5">
         <Grid Margin="10,10,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <TextBlock x:Name="steamDirectoryHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Backup Steam From..."/>
-            <TextBox x:Name="steamDirectory" Margin="0,21,26,0" Text="C:\Program Files (x86)\Steam" VerticalAlignment="Top"/>
-            <CheckBox x:Name="backupSteamapps" Content="Backup steamapps?" HorizontalAlignment="Left" Margin="0,44,0,0" VerticalAlignment="Top"/>
-            <Button x:Name="findSteamDirectory" Content="..." HorizontalAlignment="Right" Margin="0,21,0,0" VerticalAlignment="Top" Width="21" Height="18"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Backup Steam From..."/>
+            <TextBox x:Name="SteamDirectory" Margin="0,21,26,0" Text="C:\Program Files (x86)\Steam" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BackupSteamapps" Content="Backup steamapps?" HorizontalAlignment="Left" Margin="0,44,0,0" VerticalAlignment="Top" Checked="BackupSteamapps_Confirm"/>
+            <Button x:Name="FindSteamDirectory" Content="..." HorizontalAlignment="Right" Margin="0,21,0,0" VerticalAlignment="Top" Width="21" Height="18" Click="FindSteamDirectory_Click"/>
         </Grid>
 
         <Grid Margin="10,80,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <TextBlock x:Name="backupHeader" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Backup To..."/>
-            <TextBox x:Name="backupLocation" Margin="0,21,26,0" Text="E:\SteamBackup.zip" VerticalAlignment="Top"/>
-            <Button x:Name="findBackupLocation" Content="..." HorizontalAlignment="Right" Margin="0,21,0,0" VerticalAlignment="Top" Width="21" Height="18"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Backup To..."/>
+            <TextBox x:Name="BackupLocation" Margin="0,21,26,0" Text="" VerticalAlignment="Top"/>
+            <Button x:Name="FindBackupLocation" Content="..." HorizontalAlignment="Right" Margin="0,21,0,0" VerticalAlignment="Top" Width="21" Height="18" Click="FindBackupLocation_Click"/>
         </Grid>
 
-        <Button x:Name="backup" Content="Backup" Margin="10,0,10,10" VerticalAlignment="Bottom"/>
+        <Button x:Name="backup" Content="Backup" Margin="10,0,10,10" VerticalAlignment="Bottom" Click="PerformBackup">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=SteamDirectory, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=BackupLocation, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>
